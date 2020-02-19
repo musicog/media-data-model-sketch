@@ -9,9 +9,9 @@
 @prefix mp: <http://id.loc.gov/authorities/performanceMediums> .
 
 # Manual data model example: 6 Bagatelles (Op. 126) by Beethoven.
-# Here, we model the work itself, and the first constituent work (Op. 126 No. 1).  
 
-# Musicbrainz: Op. 126 
+# COMPOSITION / WORK(MusicComposition)
+## Musicbrainz: Op. 126 
 t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
   :url mbzWork:b749491a-48bf-4098-9793-5a3e12ebf1fb ;
   :name "6 Bagatelles, op. 126" ;
@@ -25,19 +25,8 @@ t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
   :sameAs amComp:mc0002355743 ,
           <http://id.loc.gov/authorities/names/nr94019272> ; #n.b. LoC not in MBz at time of writing, would need adding
   skos:exactMatch t:2b2236a3-3332-4322-82s1-298c802034ab . # e.g. determined through authority overlap (if LoC existed)
-  
-# IMSLP: Op. 126 
-t:2b2236a3-3332-4322-82d1-298c802034ab a :MusicComposition ;
-  :url <https://imslp.org/wiki/6_Bagatelles,_Op.126_(Beethoven,_Ludwig_van)> ;
-  :title "6 Bagatelles, Op.126 (Beethoven, Ludwig van)" ;
-  :name "6 Bagatelles" ; # "Work Title" under General Information on page 
-    # n.b. there are also "name translations" and "name aliases" -- what do we do with these? 
-  :identifier "Op.126" ; # "Opus/Catalogue number" under General Information on page 
-  rdau:P60537 mp:mp2013015550 ; # medium of performance: piano
-  :sameAs <http://id.loc.gov/authorities/names/nr94019272> ;
-  skos:exactMatch t:e82286b3-3739-482b-89s4-2ebc8030b430 . # e.g. determined through authority overlap
 
-# Musicbrainz: Op. 126 No. 1 
+## Musicbrainz: Op. 126 No. 1 
 t:dge286b3-4739-483b-89g4-2fba8020v433 a :MusicComposition ; 
   :url mbzWork:cda2aaf0-8325-3be9-80fd-674fde430b32 ;
   :name "6 Bagatelles, op. 126: No. 1 in G major: Andante con moto cantabile e compiacevole" ;
@@ -49,34 +38,106 @@ t:dge286b3-4739-483b-89g4-2fba8020v433 a :MusicComposition ;
     # alternatively, scrape from mbz website listing, where it is exposed 
   # lots of :recordedAs recordings (mbz recordings) 
   # lots of :sameAs other mbz works, all of which 301 redirect to this one 
-  # no other authorities in :sameAs list 
+  # no other (non-mbz) authorities in :sameAs list 
+  
+## IMSLP: Op. 126 
+t:2b2236a3-3332-4322-82d1-298c802034ab a :MusicComposition ;
+  :url <https://imslp.org/wiki/6_Bagatelles,_Op.126_(Beethoven,_Ludwig_van)> ;
+  :title "6 Bagatelles, Op.126 (Beethoven, Ludwig van)" ;
+  :name "6 Bagatelles" ; # "Work Title" under General Information on page 
+    # n.b. there are also "name translations" and "name aliases" -- what do we do with these? 
+  :identifier "Op.126" ; # "Opus/Catalogue number" under General Information on page 
+  rdau:P60537 mp:mp2013015550 ; # medium of performance: piano
+  :sameAs <http://id.loc.gov/authorities/names/nr94019272> ;
+  skos:exactMatch t:e82286b3-3739-482b-89s4-2ebc8030b430 ; # e.g. determined through authority overlap
+  :workExample t:ba62f65d-c723-4574-a755-608eee344f21 . # an IMSLP PDF
 
-# Music recording of Op. 126 
+# MUSIC RECORDINGS
+## Music recording of Op. 126 
 t:92bc46b3-37f1-4f1b-8914-21bc3030f124 a :MusicRecording ; 
   :url mbzRec:1394579a-716c-42f6-b295-4edc9b383013 ;
   :duration  "PT03M11S" ;
   :name "6 Bagatellen Op. 126" ;
   :recordingOf t:e82286b3-3739-482b-89s4-2ebc8030b430a ;
-  :contributor t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 .
+  :contributor t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 ;
+  :audio t:45e72afc-d018-4377-9c1f-2c75f961da0a .
 
-# This is a performer on a music recording. Musicbrainz has quite a lot of data, but how much do we import?
-#  As much as for a composer? Here I only grab the url and the name. We could also obtain the role the person
-#  played in a particular recording (e.g. "piano" for the pianist), as well as biographical and bibliographical 
-#  data, etc 
+## Audio object corresponding to this recording
+t:45e72afc-d018-4377-9c1f-2c75f961da0a a :AudioObject ;
+  :embedUrl <https://open.spotify.com/track/3fzOKwlYoSDXyeqRArUvfz> . # DUMMY LINK for example only
+
+# PERFORMER
+## This is a performer on a music recording. Musicbrainz has quite a lot of data, but how much do we import?
+## As much as for a composer? Here I only grab the url and the name. We could also obtain the role the person
+## played in a particular recording (e.g. "piano" for the pianist), as well as biographical and bibliographical 
+## data, etc 
 t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 a :Person ;
   :name "Michael Korstick" ;
   :url mbzArt:d20701c5-1132-4203-81d6-3a1cd648e417 .
 
+# SCORE (PDF)
+## IMSLP: Opus 126 Breitkopf & Haertel edition
+t:ba62f65d-c723-4574-a755-608eee344f21 a :MediaObject ;
+  :exampleOfWork t:2b2236a3-3332-4322-82d1-298c802034ab ;
+  :encodingFormat "application/pdf" ;  
+    # strictly speaking a lie, since this isn't a direct link to the pdf... is this problematic?
+  rdau:P60537 mp:mp2013015550 ; # medium of performance: piano
+  :encoding t:890f9d8e-b850-473e-a580-d664e51293f2 , 
+            t:19604f23-0159-4727-84f0-b17bc3c05358a . # two crowd-campaign-generated MEI encodings
 
-# Medium of performance: piano [english] 
+# SCORE ENCODING (MEI Crowd campaigns)
+## Campaign 1: 
+t:890f9d8e-b850-473e-a580-d664e51293f2 a :MediaObject ;
+  :exampleOfWork t:2b2236a3-3332-4322-82d1-298c802034ab ;
+  :encodesCreativeWork t:ba62f65d-c723-4574-a755-608eee344f21 ;
+  :encodingFormat "application/mei+xml" ; 
+  :url <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel> ; #or dc:source?
+  :contentUrl <https://raw.githubusercontent.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/XXX-CAMPAIGN-1/Beethoven_WoO80.mei> .
+    # XXX-CAMPAIGN-1 is the name of the campaign branch for campaign 1's MEI encoding
+
+## Campaign 2:
+t:19604f23-0159-4727-84f0-b17bc3c05358a  a :MediaObject ;
+  :exampleOfWork t:2b2236a3-3332-4322-82d1-298c802034ab ;
+  :encodesCreativeWork t:ba62f65d-c723-4574-a755-608eee344f21 ;
+  :encodingFormat "application/mei+xml" ; 
+  :url <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel> ; #or dc:source?
+  :contentUrl <https://raw.githubusercontent.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/XXX-CAMPAIGN-2/Beethoven_WoO80.mei> .
+    # XXX-CAMPAIGN-2 is the name of the campaign branch for campaign 2's MEI encoding
+
+# MEDIUM OF PERFORMANCE information -- import from LoC performance mediums thesaurus
+## Medium of performance: piano [english] 
 t:2b2236a3-4833-4322-8291-990c212033cb a skos:Concept ; 
   :url mp:mp2013015550 ;
   :name "piano" ;
   :inLanguage "en" ;
   skos:exactMatch t:3c2232a8-8830-1323-2281-990c312893b3 .
 
-# Medium of performance: piano [german] 
+## Medium of performance: piano [german] 
 t:3c2232a8-8830-1323-2281-990c312893b3 a skos:Concept ; 
   :url mp:mp2013015550 ;
   :name "Klavier" ;
   :inLanguage "de" .
+
+# REHEARSAL RENDITIONS
+## A container (ItemList) of rehearsal renditions of Campaign 1's MEI encoding
+## N.b. there could be further such containers, this could e.g. be 
+## performances by user X of this encoding -- to be worked out
+t:6556a328-580d-4d5f-9913-c99e9a832961 a :ItemList ; 
+  :about t:890f9d8e-b850-473e-a580-d664e51293f2 ;
+  :potentialAction :AssessAction ; # is there a better choice? 
+    # the purpose is to differentiate this from other kinds of ItemList (e.g. contributed audio; annotations)
+    # for the benefit of the web client
+  :itemListElement t:b6d14e32-797c-48dc-a55e-7544594f991e, t:082e415b-5235-40c4-bdd2-9f9db26562bd .
+
+## A rehearsal rendition
+t:b6d14e32-797c-48dc-a55e-7544594f991e a :DigitalDocument ; # RDF (JSON-LD) timeline stored on a POD
+  :url <https://userX.solid.trompamusic.eu/renditions/9d6facc0-1cf7-444e-ae3b-788aa0579ef5> ;
+  :encodingFormat "application/ls+json" .
+
+## Another rehearsal rendition
+t:082e415b-5235-40c4-bdd2-9f9db26562bd a :DigitalDocument ; # RDF (JSON-LD) timeline stored on a POD
+  :url <https://userX.solid.trompamusic.eu/renditions/70bc3329-b4b7-46c5-a888-2a6fbec23557> ;
+  :encodingFormat "application/ls+json" .
+  
+
+  
