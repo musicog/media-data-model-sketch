@@ -11,7 +11,6 @@
 # Manual data model example: 6 Bagatelles (Op. 126) by Beethoven.
 # Here, we model the work itself, and the first constituent work (Op. 126 No. 1).  
 
-
 # Musicbrainz: Op. 126 
 t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
   :url mbzWork:b749491a-48bf-4098-9793-5a3e12ebf1fb ;
@@ -23,8 +22,9 @@ t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
   :contributor "https://musicbrainz.org" ;
   :creator "http://trompamusic.eu" ;
   :format "application/ld+json" ;
-  :sameAs amComp:mc0002355743 ;
-  skos:exactMatch t:2b2236a3-3332-4322-82s1-298c802034ab .
+  :sameAs amComp:mc0002355743 ,
+          <http://id.loc.gov/authorities/names/nr94019272> ; #n.b. LoC not in MBz at time of writing, would need adding
+  skos:exactMatch t:2b2236a3-3332-4322-82s1-298c802034ab . # e.g. determined through authority overlap (if LoC existed)
   
 # IMSLP: Op. 126 
 t:2b2236a3-3332-4322-82d1-298c802034ab a :MusicComposition ;
@@ -33,15 +33,9 @@ t:2b2236a3-3332-4322-82d1-298c802034ab a :MusicComposition ;
   :name "6 Bagatelles" ; # "Work Title" under General Information on page 
     # n.b. there are also "name translations" and "name aliases" -- what do we do with these? 
   :identifier "Op.126" ; # "Opus/Catalogue number" under General Information on page 
-  rdau:P60537 mp:mp2013015550 .
-
-# Medium of performance: piano [english] 
-t:2b2236a3-4833-4322-8291-990c212033cb a skos:Concept ; 
-  :url mp:mp2013015550 ;
-  :name "piano" ;
-  :inLanguage "en" .
-
-
+  rdau:P60537 mp:mp2013015550 ; # medium of performance: piano
+  :sameAs <http://id.loc.gov/authorities/names/nr94019272> ;
+  skos:exactMatch t:e82286b3-3739-482b-89s4-2ebc8030b430 . # e.g. determined through authority overlap
 
 # Musicbrainz: Op. 126 No. 1 
 t:dge286b3-4739-483b-89g4-2fba8020v433 a :MusicComposition ; 
@@ -74,3 +68,15 @@ t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 a :Person ;
   :url mbzArt:d20701c5-1132-4203-81d6-3a1cd648e417 .
 
 
+# Medium of performance: piano [english] 
+t:2b2236a3-4833-4322-8291-990c212033cb a skos:Concept ; 
+  :url mp:mp2013015550 ;
+  :name "piano" ;
+  :inLanguage "en" ;
+  skos:exactMatch t:3c2232a8-8830-1323-2281-990c312893b3 .
+
+# Medium of performance: piano [german] 
+t:3c2232a8-8830-1323-2281-990c312893b3 a skos:Concept ; 
+  :url mp:mp2013015550 ;
+  :name "Klavier" ;
+  :inLanguage "de" .
