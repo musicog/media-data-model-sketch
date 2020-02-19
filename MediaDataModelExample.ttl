@@ -1,0 +1,76 @@
+@prefix : <https://schema.org/> .
+@prefix t: <https://api-test.trompamusic.eu/> .
+@prefix mbzWork: <https://musicbrainz.org/work/> .
+@prefix mbzRec: <https://musicbrainz.org/recording/> .
+@prefix mbzArt: <https://musicbrainz.org/artist/> .
+@prefix amComp: <https://www.allmusic.com/composition/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdau: <http://rdaregistry.info/Elements/u/> .
+@prefix mp: <http://id.loc.gov/authorities/performanceMediums> .
+
+# Manual data model example: 6 Bagatelles (Op. 126) by Beethoven.
+# Here, we model the work itself, and the first constituent work (Op. 126 No. 1).  
+
+
+# Musicbrainz: Op. 126 
+t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
+  :url mbzWork:b749491a-48bf-4098-9793-5a3e12ebf1fb ;
+  :name "6 Bagatelles, op. 126" ;
+  :title "6 Bagatelles, op. 126" ; # mbz json-ld doesn't expose title. Use name? Or make optional? 
+  :inLanguage: "zxx" ; # this is returned by musicbrainz. is it valid? 
+  :includedComposition t:dge286b3-4739-483b-89g4-2fba8020v433 ;
+  :recordedAs t:92bc46b3-37f1-4f1b-8914-21bc3030f124 ;
+  :contributor "https://musicbrainz.org" ;
+  :creator "http://trompamusic.eu" ;
+  :format "application/ld+json" ;
+  :sameAs amComp:mc0002355743 ;
+  skos:exactMatch t:2b2236a3-3332-4322-82s1-298c802034ab .
+  
+# IMSLP: Op. 126 
+t:2b2236a3-3332-4322-82d1-298c802034ab a :MusicComposition ;
+  :url <https://imslp.org/wiki/6_Bagatelles,_Op.126_(Beethoven,_Ludwig_van)> ;
+  :title "6 Bagatelles, Op.126 (Beethoven, Ludwig van)" ;
+  :name "6 Bagatelles" ; # "Work Title" under General Information on page 
+    # n.b. there are also "name translations" and "name aliases" -- what do we do with these? 
+  :identifier "Op.126" ; # "Opus/Catalogue number" under General Information on page 
+  rdau:P60537 mp:mp2013015550 .
+
+# Medium of performance: piano [english] 
+t:2b2236a3-4833-4322-8291-990c212033cb a skos:Concept ; 
+  :url mp:mp2013015550 ;
+  :name "piano" ;
+  :inLanguage "en" .
+
+
+
+# Musicbrainz: Op. 126 No. 1 
+t:dge286b3-4739-483b-89g4-2fba8020v433 a :MusicComposition ; 
+  :url mbzWork:cda2aaf0-8325-3be9-80fd-674fde430b32 ;
+  :name "6 Bagatelles, op. 126: No. 1 in G major: Andante con moto cantabile e compiacevole" ;
+  :title "6 Bagatelles, op. 126: No. 1 in G major: Andante con moto cantabile e compiacevole" ; 
+    # mbz json-ld doesn't expose title. Use name? Or make optional? 
+  :inLanguage: "zxx" ; # this is returned by musicbrainz. is it valid? 
+  :partOf t:e82286b3-3739-482b-89s4-2ebc8030b430 .
+    # partOf not in mbz jsonld; infer from :includedComposition in t:e82286b3-3739-482b-89s4-2ebc8030b430 
+    # alternatively, scrape from mbz website listing, where it is exposed 
+  # lots of :recordedAs recordings (mbz recordings) 
+  # lots of :sameAs other mbz works, all of which 301 redirect to this one 
+  # no other authorities in :sameAs list 
+
+# Music recording of Op. 126 
+t:92bc46b3-37f1-4f1b-8914-21bc3030f124 a :MusicRecording ; 
+  :url mbzRec:1394579a-716c-42f6-b295-4edc9b383013 ;
+  :duration  "PT03M11S" ;
+  :name "6 Bagatellen Op. 126" ;
+  :recordingOf t:e82286b3-3739-482b-89s4-2ebc8030b430a ;
+  :contributor t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 .
+
+# This is a performer on a music recording. Musicbrainz has quite a lot of data, but how much do we import?
+#  As much as for a composer? Here I only grab the url and the name. We could also obtain the role the person
+#  played in a particular recording (e.g. "piano" for the pianist), as well as biographical and bibliographical 
+#  data, etc 
+t:78bc46c2-2bf1-9f2b-29a4-212c3d8321d1 a :Person ;
+  :name "Michael Korstick" ;
+  :url mbzArt:d20701c5-1132-4203-81d6-3a1cd648e417 .
+
+
