@@ -16,7 +16,7 @@ t:e82286b3-3739-482b-89s4-2ebc8030b430 a :MusicComposition ;
   :url mbzWork:b749491a-48bf-4098-9793-5a3e12ebf1fb ;
   :name "6 Bagatelles, op. 126" ;
   :title "6 Bagatelles, op. 126" ; # mbz json-ld doesn't expose title. Use name? Or make optional? 
-  :inLanguage: "zxx" ; # this is returned by musicbrainz. is it valid? 
+  :inLanguage "zxx" ; # this is returned by musicbrainz. is it valid? 
   :includedComposition t:dge286b3-4739-483b-89g4-2fba8020v433 ;
   :recordedAs t:92bc46b3-37f1-4f1b-8914-21bc3030f124 ;
   :contributor "https://musicbrainz.org" ;
@@ -32,7 +32,7 @@ t:dge286b3-4739-483b-89g4-2fba8020v433 a :MusicComposition ;
   :name "6 Bagatelles, op. 126: No. 1 in G major: Andante con moto cantabile e compiacevole" ;
   :title "6 Bagatelles, op. 126: No. 1 in G major: Andante con moto cantabile e compiacevole" ; 
     # mbz json-ld doesn't expose title. Use name? Or make optional? 
-  :inLanguage: "zxx" ; # this is returned by musicbrainz. is it valid? 
+  :inLanguage "zxx" ; # this is returned by musicbrainz. is it valid? 
   :partOf t:e82286b3-3739-482b-89s4-2ebc8030b430 .
     # partOf not in mbz jsonld; infer from :includedComposition in t:e82286b3-3739-482b-89s4-2ebc8030b430 
     # alternatively, scrape from mbz website listing, where it is exposed 
