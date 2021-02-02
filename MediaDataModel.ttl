@@ -55,7 +55,7 @@
   # the long random string is a SHA1 generated from the "real" mxl URL 
   # i.e. the actual download link, rather than the IMSLP disclaimer page 
   # the path after the SHA1 hash is the path-within-the-zip to the file being targeted 
-  schema:contentUrl <arcp://uuid,c6d26f4f789a6f69b0d2e3c0cb2b139e4c643edd/encoding/hypothetical-example.xml> .
+  schema:contentUrl <arcp://ni,sha-256;ZjBhOTYyZTUxYjUzYzlmNWRlOTJjMTNlMTkxZGM4N2NjMGYyYTQzNTc0NTkxMWI0ZDU4YTUyNDQ2Mjk5YmUxNg==/encoding/hypothetical-example.xml> .
 
 :musicRecordingNode a schema:MusicRecording ;
   schema:recordingOf :compositionNode ;
