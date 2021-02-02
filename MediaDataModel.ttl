@@ -1,5 +1,5 @@
 @prefix ex: <https://example.trompamusic.eu/> .
-@prefix schema: <http://schema.org> .
+@prefix schema: <http://schema.org/> .
 @prefix rdau: <http://rdaregistry.info/Elements/u/> .
 @prefix mp: <http://id.loc.gov/authorities/performanceMediums/> .
 @prefix dc: <http://purl.org/dc/terms/> .
