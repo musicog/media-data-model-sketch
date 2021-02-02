@@ -28,6 +28,7 @@
   schema:encodingFormat "application/mei+xml" ;
   schema:subjectOf :contributedRehearsalRenditionsItemList ;
   schema:url <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel> ;
+  dc:source <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/blob/master/Beethoven_WoO80.mei> ;
   schema:contentUrl <https://raw.githubusercontent.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/master/Beethoven_WoO80.mei> .
 
 :mediaObjectMusicXMLNode a schema:MediaObject ;
