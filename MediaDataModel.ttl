@@ -1,10 +1,10 @@
-@prefix : <https://example.trompamusic.eu/> .
+@prefix ex: <https://example.trompamusic.eu/> .
 @prefix schema: <http://schema.org> .
 @prefix rdau: <http://rdaregistry.info/Elements/u/> .
 @prefix mp: <http://id.loc.gov/authorities/performanceMediums/> .
 @prefix dc: <http://purl.org/dc/terms/> .
 
-:composerNode a schema:Person ;
+ex:composerNode a schema:Person ;
   schema:creator <https://github.com/trompamusic/trompa-ce-client/tree/v0.1/demo> ;
   schema:contributor <https://musicbrainz.org> ;
   dc:source <https://musicbrainz.org/artist/1f9df192-a621-4f54-8850-2c5373b7eac9> ;
@@ -17,36 +17,38 @@
   dc:language "en" .
   
 
-:compositionNode a schema:MusicComposition ;
-  schema:composer :composerNode ;
-  schema:workExample :mediaObjectScorePDFNode ;
-  schema:workExample :mediaObjectMusicXMLNode ;
-  schema:workExample :mediaObjectMEINode ;
-  schema:recordedAs :musicRecordingNode ;
-  schema:subjectOf :contributedRecordingsItemList;
-  schema:includedComposition :movementOfACompositionNode ;
+ex:compositionNode a schema:MusicComposition ;
+  schema:composer ex:composerNode ;
+  schema:workExample ex:mediaObjectScorePDFNode ;
+  schema:workExample ex:mediaObjectMusicXMLNode ;
+  schema:workExample ex:mediaObjectMEINode ;
+  schema:recordedAs ex:musicRecordingNode ;
+  schema:subjectOf ex:contributedRecordingsItemList;
+  schema:includedComposition ex:movementOfACompositionNode ;
   schema:url <https://musicbrainz.org/work/79807669-dde4-3919-ac53-9835d539c159> .
   # another node related by skos:exactMatch could have: 
   # schema:url <https://www.muziekweb.nl/en/Link/U00000585868/CLASSICAL/Variations-for-piano-WoO-80-no-1-32-in-c-minor> . 
 
-:mediaObjectScorePDFNode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
+ex:movementOfACompositionNode a schema:MusicComposition .
+
+ex:mediaObjectScorePDFNode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
   schema:encodingFormat: "application/pdf" ;
   schema:url <https://imslp.org/wiki/Special:ReverseLookup/53059> ;
   rdau:P60537  mp:mp2013015550 ;  # has medium of performance: Piano
-  schema:encoding :mediaObjectMEINode .
+  schema:encoding ex:mediaObjectMEINode .
 
-:mediaObjectMEINode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
-  schema:encodesCreativeWork :mediaObjectScorePDFNode ;
+ex:mediaObjectMEINode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
+  schema:encodesCreativeWork ex:mediaObjectScorePDFNode ;
   schema:encodingFormat "application/mei+xml" ;
-  schema:subjectOf :contributedRehearsalRenditionsItemList ;
+  schema:subjectOf ex:contributedRehearsalRenditionsItemList ;
   schema:url <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel> ;
   dc:source <https://github.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/blob/master/Beethoven_WoO80.mei> ;
   schema:contentUrl <https://raw.githubusercontent.com/trompamusic-encodings/Beethoven_WoO80_BreitkopfHaertel/master/Beethoven_WoO80.mei> .
 
-:mediaObjectMusicXMLNode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
+ex:mediaObjectMusicXMLNode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
   rdau:P60537  mp:mp2013015550 ;  # has medium of performance: Piano
   schema:encodingFormat "application/vnd.recordare.musicxml" ;
   schema:url <https://imslp.org/wiki/Special:ReverseLookup/hypothetical-example-musicXML> ;
@@ -57,30 +59,30 @@
   # the path after the SHA1 hash is the path-within-the-zip to the file being targeted 
   schema:contentUrl <arcp://ni,sha-256;ZjBhOTYyZTUxYjUzYzlmNWRlOTJjMTNlMTkxZGM4N2NjMGYyYTQzNTc0NTkxMWI0ZDU4YTUyNDQ2Mjk5YmUxNg==/encoding/hypothetical-example.xml> .
 
-:musicRecordingNode a schema:MusicRecording ;
-  schema:recordingOf :compositionNode ;
-  schema:audio :audioObjectNode ;
+ex:musicRecordingNode a schema:MusicRecording ;
+  schema:recordingOf ex:compositionNode ;
+  schema:audio ex:audioObjectNode ;
   schema:url <https://musicbrainz.org/recording/9ad847fb-0aed-4921-b4d1-7dc1aa079363> .
 
-:audioObjectNode a schema:audioObject ;
+ex:audioObjectNode a schema:audioObject ;
   schema:embedUrl <https://open.spotify.com/embed/track/56XYlGK17ZeWe1G02W4s1I> ;
   schema:url <https://www.muziekweb.nl/en/Link/U00000585868/CLASSICAL/Variations-for-piano-WoO-80-no-1-32-in-c-minor> ;
   schema:contentUrl <https://s3.trompamusic.eu/audio/hypothetical-public-domain-audio-recording.mp3> .
   
-:contributedRecordingsItemList a schema:ItemList ;
-  schema:about :compositionNode ;
-  schema:itemListElement :audioObjectContributionNode .
+ex:contributedRecordingsItemList a schema:ItemList ;
+  schema:about ex:compositionNode ;
+  schema:itemListElement ex:audioObjectContributionNode .
 
-:audioObjectContributionNode a schema:AudioObject ;
+ex:audioObjectContributionNode a schema:AudioObject ;
   schema:license <https://creativecommons.org/licenses/by/4.0> ;
   schema:creator <https://users.voctrolabs.com/user/hypothetical-voctro-user> ;
   schema:contentUrl <https://s3.voctrolabs.com/audio/hypothetical-voctro-user-contributed-audio.mp3> .
 
-:contributedRehearsalRenditionsItemList a schema:ItemList ;
-  schema:about :mediaObjectMEINode ;
-  schema:itemListElement :rehearsalRecordingContribution .
+ex:contributedRehearsalRenditionsItemList a schema:ItemList ;
+  schema:about ex:mediaObjectMEINode ;
+  schema:itemListElement ex:rehearsalRecordingContribution .
 
-:rehearsalRecordingContribution a schema:DigitalDocument ;
+ex:rehearsalRecordingContribution a schema:DigitalDocument ;
   schema:license <https://creativecommons.org/licenses/by/4.0> ;
   schema:creator <https://hypothetical-clara-user.trompa-solid.upf.edu/profile/card#me> ;
   schema:contentUrl <https://hypothetical-clara-user.trompa-solid.upf.edu/clara.trompamusic.folder/performance/hypothetical-example-performance.jsonld> .

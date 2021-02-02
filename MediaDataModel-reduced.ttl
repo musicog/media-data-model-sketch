@@ -1,49 +1,51 @@
-@prefix : <https://example.trompamusic.eu/> .
+@prefix ex: <https://example.trompamusic.eu/> .
 @prefix schema: <http://schema.org> .
 @prefix rdau: <http://rdaregistry.info/Elements/u/> .
 @prefix mp: <http://id.loc.gov/authorities/performanceMediums/> .
 @prefix dc: <http://purl.org/dc/terms/> .
 
-:composerNode a schema:Person .
+ex:composerNode a schema:Person .
 
-:compositionNode a schema:MusicComposition ;
-  schema:composer :composerNode ;
-  schema:workExample :mediaObjectScorePDFNode ;
-  schema:workExample :mediaObjectMusicXMLNode ;
-  schema:workExample :mediaObjectMEINode ;
-  schema:recordedAs :musicRecordingNode ;
-  schema:subjectOf :contributedRecordingsItemList;
-  schema:includedComposition :movementOfACompositionNode .
+ex:compositionNode a schema:MusicComposition ;
+  schema:composer ex:composerNode ;
+  schema:workExample ex:mediaObjectScorePDFNode ;
+  schema:workExample ex:mediaObjectMusicXMLNode ;
+  schema:workExample ex:mediaObjectMEINode ;
+  schema:recordedAs ex:musicRecordingNode ;
+  schema:subjectOf ex:contributedRecordingsItemList;
+  schema:includedComposition ex:movementOfACompositionNode .
 
-:mediaObjectScorePDFNode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
+  ex:movementOfACompositionNode a schema:MusicComposition .
+
+ex:mediaObjectScorePDFNode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
   schema:encodingFormat: "application/pdf" ;
-  schema:encoding :mediaObjectMEINode .
+  schema:encoding ex:mediaObjectMEINode .
 
-:mediaObjectMEINode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
-  schema:encodesCreativeWork :mediaObjectScorePDFNode ;
+ex:mediaObjectMEINode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
+  schema:encodesCreativeWork ex:mediaObjectScorePDFNode ;
   schema:encodingFormat "application/mei+xml" ;
-  schema:subjectOf :contributedRehearsalRenditionsItemList .
+  schema:subjectOf ex:contributedRehearsalRenditionsItemList .
 
-:mediaObjectMusicXMLNode a schema:MediaObject ;
-  schema:exampleOfWork :compositionNode ;
+ex:mediaObjectMusicXMLNode a schema:MediaObject ;
+  schema:exampleOfWork ex:compositionNode ;
   schema:encodingFormat "application/vnd.recordare.musicxml" .
 
-:musicRecordingNode a schema:MusicRecording ;
-  schema:recordingOf :compositionNode ;
-  schema:audio :audioObjectNode .
+ex:musicRecordingNode a schema:MusicRecording ;
+  schema:recordingOf ex:compositionNode ;
+  schema:audio ex:audioObjectNode .
 
-:audioObjectNode a schema:audioObject .
+ex:audioObjectNode a schema:audioObject .
   
-:contributedRecordingsItemList a schema:ItemList ;
-  schema:about :compositionNode ;
-  schema:itemListElement :audioObjectContributionNode .
+ex:contributedRecordingsItemList a schema:ItemList ;
+  schema:about ex:compositionNode ;
+  schema:itemListElement ex:audioObjectContributionNode .
 
-:audioObjectContributionNode a schema:AudioObject .
+ex:audioObjectContributionNode a schema:AudioObject .
 
-:contributedRehearsalRenditionsItemList a schema:ItemList ;
-  schema:about :mediaObjectMEINode ;
-  schema:itemListElement :rehearsalRecordingContribution .
+ex:contributedRehearsalRenditionsItemList a schema:ItemList ;
+  schema:about ex:mediaObjectMEINode ;
+  schema:itemListElement ex:rehearsalRecordingContribution .
 
-:rehearsalRecordingContribution a schema:DigitalDocument .
+ex:rehearsalRecordingContribution a schema:DigitalDocument .
