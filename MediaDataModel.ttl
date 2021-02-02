@@ -4,6 +4,20 @@
 @prefix mp: <http://id.loc.gov/authorities/performanceMediums/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 
+:composerNode a schema:Person ;
+  schema:creator <https://github.com/trompamusic/trompa-ce-client/tree/v0.1/demo> ;
+  schema:contributor <https://musicbrainz.org> ;
+  dc:source <https://musicbrainz.org/artist/8d610e51-64b4-4654-b8df-064b0fb7a9d9> ;
+  dc:source <https://musicbrainz.org/artist/1f9df192-a621-4f54-8850-2c5373b7eac9> ;
+  dc:title "Ludwig van Beethoven - MusicBrainz" ;
+  schema:name "Ludwig van Beethoven" ;
+  schema:birth_date "1770-12-17" ;
+  schema:death_date "1827-03-26" ;
+  dc:format "text/html" ;
+  schema:gender "Male" ;
+  dc:language "en" .
+  
+
 :compositionNode a schema:MusicComposition ;
   schema:workExample :mediaObjectScorePDFNode ;
   schema:workExample :mediaObjectMusicXMLNode ;
